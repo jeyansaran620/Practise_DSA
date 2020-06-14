@@ -11,7 +11,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 class Person:
-    def __init__(self,hp,mp,atk,df,magic):
+    def __init__(self,hp,mp,atk,df,magic,items):
         self.max_hp=hp
         self.hp=hp
         self.max_mp=mp
@@ -20,21 +20,22 @@ class Person:
         self.atkh=atk+10
         self.df=df
         self.magic=magic
-        self.actions=["Attack","Magic"]
+        self.actions=["Attack","Magic","Items"]
+        self.items=items
 
     def generate_damage(self):
         return random.randrange(self.atkl,self.atkh)
-
-    def generate_spell_damage(self, i):
-        mgl=self.magic[i]["dmg"] - 5
-        mgh=self.magic[i]["dmg"] + 5
-        return random.randrange(mgl,mgh)
 
     def take_damage(self,dmg):
         self.hp-=dmg
         if self.hp < 0:
             self.hp=0
         return self.hp
+
+    def heal(self,dmg):
+        self.hp +=dmg
+        if self.hp > self.max_hp:
+            self.hp= self.max_hp
 
     def get_hp(self):
         return self.hp
@@ -51,22 +52,23 @@ class Person:
     def reduce_mp(self,cost):
         self.mp-=cost
 
-    def get_spell_name(self, i):
-        return self.magic[i]["name"]
-
-    def get_spell_mp_cost(self, i):
-        return self.magic[i]["cost"]
-
     def choose_action(self):
         i=1
-        print("Actions")
+        print("\n"+ bcolors.OKBLUE + "ACTIONS" + bcolors.ENDC)
         for item in self.actions:
-            print(str(i) + "--" + item)
+            print("    "+ str(i) + ". " + item)
             i+=1
 
     def choose_magic(self):
         i=1
-        print("Magic")
+        print("\n"+ bcolors.OKBLUE+"MAGIC"+bcolors.ENDC)
         for item in self.magic:
-            print(str(i) + "--" + item["name"] + " " + item["mp"])
+            print("    "+ str(i) + ". " + item.name + " " + str(item.cost))
+            i+=1
+
+    def choose_item(self):
+        i=1
+        print("\n"+ bcolors.OKBLUE+"ITEMS"+bcolors.ENDC)
+        for item in self.items:
+            print("    "+ str(i) + ". " + item.name + " : " + item.description )
             i+=1
