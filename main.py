@@ -27,18 +27,24 @@ hielixir = Item("MegaElixir", "elixer", "Fullly restores HP for all", 99999)
 
 grenade = Item("Grenade", "attack", "Deals 500 damage", 500)
 
-player_items =[{"item": potion, "quantity": 5},{"item": hipotion, "quantity": 3},
+player1_items =[{"item": potion, "quantity": 5},{"item": hipotion, "quantity": 3},
+               {"item": superpotion, "quantity": 1},{"item": elixir, "quantity": 3},
+               {"item": hielixir, "quantity": 1},{"item": grenade, "quantity": 3}]
+player2_items =[{"item": potion, "quantity": 5},{"item": hipotion, "quantity": 3},
+               {"item": superpotion, "quantity": 1},{"item": elixir, "quantity": 3},
+               {"item": hielixir, "quantity": 1},{"item": grenade, "quantity": 3}]
+player3_items =[{"item": potion, "quantity": 5},{"item": hipotion, "quantity": 3},
                {"item": superpotion, "quantity": 1},{"item": elixir, "quantity": 3},
                {"item": hielixir, "quantity": 1},{"item": grenade, "quantity": 3}]
 
 #instantiate people
-player1 = Person("Valos",3260, 132, 300, 34, player_magic, player_items)
-player2 = Person("Nick ",4160, 176, 310, 34, player_magic, player_items)
-player3 = Person("Robot",3940, 168, 290, 34, player_magic, player_items)
+player1 = Person("Valos",3260, 132, 300, 34, player_magic, player1_items)
+player2 = Person("Nick ",4160, 176, 310, 34, player_magic, player2_items)
+player3 = Person("Robot",3940, 168, 290, 34, player_magic, player3_items)
 
-enemy1 = Person("Magus",17500, 130, 285, 25, player_magic, player_items)
-enemy2 = Person("Imper",11200, 100, 340, 25, player_magic, player_items)
-enemy3 = Person("Impro",11200, 100, 340, 25, player_magic, player_items)
+enemy1 = Person("Magus",17500, 130, 285, 25, player_magic, [])
+enemy2 = Person("Imper",11200, 100, 340, 25, player_magic, [])
+enemy3 = Person("Impro",11200, 100, 340, 25, player_magic, [])
 
 players = [player1,player2,player3]
 enemies = [enemy1,enemy2,enemy3]
